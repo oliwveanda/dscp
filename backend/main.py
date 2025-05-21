@@ -1,23 +1,9 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from ai.models.predictor import AirQualityPredictor
+from fastapi import FastAPI
+from backend.app.api.v1 import api_router
 
-app = FastAPI()
+app = FastAPI(
+    title="PM2.5 Forecast API",
+    version="1.0.0"
+)
 
-predictor = AirQualityPredictor()
-
-class PredictionRequest(BaseModel):
-    temperature: float
-    humidity: float
-
-@app.post("/predict")
-async def predict_air_quality(data: PredictionRequest):
-    try:
-        result = predictor.predict(data.temperature, data.humidity)
-        return {"PM2.5 Prediction": result}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the Air Quality Predictive Model API"}
+app.include_router(api_router, prefix="/v1")
