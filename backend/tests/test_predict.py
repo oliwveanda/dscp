@@ -42,3 +42,17 @@ def test_predict_invalid_input():
         }
     )
     assert response.status_code == 422
+
+
+def test_predict_missing_api_key():
+    response = client.post("/v1/predict/predict", json={
+        "pm25_lag_1": 8.5,
+        "pm25_lag_2": 8.2,
+        "pm25_lag_3": 9.0,
+        "year": 2024,
+        "month": 6,
+        "sin_month": 0.5,
+        "cos_month": 0.87
+    })
+    assert response.status_code == 401
+    
