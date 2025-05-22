@@ -1,4 +1,3 @@
-from pathlib import Path
 import logging
 
 from backend.app.core.config import settings

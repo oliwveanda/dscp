@@ -23,12 +23,12 @@ def predict_pm25(data: PredictionInput, _: str = Depends(verify_api_key)):
         sin_month = math.sin(2 * math.pi * data.month / 12)
         cos_month = math.cos(2 * math.pi * data.month / 12)
 
-        features = np.array([[ 
+        features = np.array([[
             data.pm25_lag_1, data.pm25_lag_2, data.pm25_lag_3,
             data.year, data.month, sin_month, cos_month
         ]])
         prediction = model.predict(features)[0]
-        logger.info(f"Prediction completed successfully. PM2.5 = {round(prediction, 2)}")
+        logger.info(f"Prediction successful. PM2.5 = {round(prediction, 2)}")
         return PredictionResponse(predicted_pm25=round(prediction, 2))
     except Exception as e:
         logger.error(f"Prediction failed: {str(e)}", exc_info=True)
