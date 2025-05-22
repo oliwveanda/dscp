@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.venv/
+poetry.lock
+tests/
+notebooks/
+docs/
+*.docx
+*.csv
