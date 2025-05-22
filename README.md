@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-Air pollution is one of the most significant environmental threats to urban populations. While everyone is exposed, pollutant emissions, levels of exposure, and population vulnerability vary significantly across neighborhoods. Exposure to common air pollutants has been linked to respiratory and cardiovascular diseases, cancers, and premature deaths. This project aims to analyze air quality data collected from New York City to better understand pollution trends, identify potential health risks, and predict air quality levels.
+Air pollution is one of the most significant environmental threats to urban populations. While everyone is exposed, pollutant emissions, levels of exposure, and population vulnerability vary significantly across neighborhoods. Exposure to common air pollutants has been linked to respiratory and cardiovascular diseases, cancers, and premature deaths. This project aims to analyze air quality data collected from New York City to better understand pollution trends, identify potential health risks, and predict...
 
 ## Objectives
 
@@ -26,10 +26,6 @@ Air pollution is one of the most significant environmental threats to urban popu
 - Source: Air quality surveillance data collected from New York City
 - Link: [Air Quality Dataset](https://catalog.data.gov/dataset/air-quality)
 
-## Project Motivation
-
-The primary motivation behind this project is to gain insights into urban air pollution and its impact on public health. Understanding the patterns and predictors of air quality will help policymakers, environmental agencies, and public health officials make informed decisions to mitigate health risks associated with poor air quality.
-
 ## Methodology
 
 1. Data Preprocessing: Cleaning, formatting, and handling missing values.
@@ -37,47 +33,52 @@ The primary motivation behind this project is to gain insights into urban air po
 3. Model Training: Training multiple models (Linear Regression, XGBoost, Random Forest) and selecting the best.
 4. API Development: Serving predictions through a versioned FastAPI endpoint.
 5. Dockerization: Packaging the app using Docker for cross-platform deployment.
-6. Testing: Automated endpoint validation using pytest and FastAPI’s TestClient.
-7. Reporting: Documenting results and architecture in structured milestone reports.
+6. Authentication: Securing the endpoint via an API key header.
+7. Logging: Logging all activity to `logs/api.log`.
+8. Testing: Automated endpoint validation using pytest.
+9. Deployment: Live hosting on Render with Docker.
+
+## Deployment
+
+- 🔗 Live API: [https://dscp-kskv.onrender.com/v1/predict/predict](https://dscp-kskv.onrender.com/v1/predict/predict)
+- 🔐 Requires header: `x-api-key: your-api-key`
 
 ## Usage
 
 ### Local Development
 
-1. Clone the repository and install dependencies:
-    ```bash
-    poetry install
-    ```
-
-2. Run the app locally:
-    ```bash
-    uvicorn backend.main:app --reload
-    ```
-
-3. Access the API at:
-    ```
-    http://localhost:8000/v1/predict/predict
-    ```
+```bash
+poetry install
+uvicorn backend.main:app --reload
+```
 
 ### Docker
 
-1. Build the container:
-    ```bash
-    docker build -t pm25-api .
-    ```
+```bash
+docker build -t pm25-api .
+docker run --env-file .env -p 8000:8000 pm25-api
+```
 
-2. Run the container:
-    ```bash
-    docker run -p 8000:8000 pm25-api
-    ```
+### Example Request
+
+```bash
+curl -X POST https://dscp-kskv.onrender.com/v1/predict/predict \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: your-api-key" \
+  -d '{
+        "pm25_lag_1": 8.5,
+        "pm25_lag_2": 8.2,
+        "pm25_lag_3": 9.0,
+        "year": 2024,
+        "month": 6
+      }'
+```
 
 ## Expected Outcomes
 
-- Daily and seasonal pollution patterns in New York City.
-- Identification of critical factors influencing air quality.
-- Predictive models for PM2.5 concentration.
-- A FastAPI-based REST API to forecast PM2.5 values.
-- Dockerized, testable, and portable model service.
+- Seasonal and temporal analysis of pollution patterns.
+- Accurate model for forecasting PM2.5 concentrations.
+- Dockerized, authenticated, and tested prediction API.
 
 ## Acknowledgments
 
