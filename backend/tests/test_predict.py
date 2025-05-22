@@ -16,9 +16,7 @@ def test_predict_valid_input():
             "pm25_lag_2": 8.2,
             "pm25_lag_3": 9.0,
             "year": 2024,
-            "month": 6,
-            "sin_month": 0.5,
-            "cos_month": 0.87
+            "month": 6
         }
     )
     assert response.status_code == 200
@@ -36,9 +34,7 @@ def test_predict_invalid_input():
             "pm25_lag_2": 8.2,
             "pm25_lag_3": 9.0,
             "year": 2024,
-            "month": 6,
-            "sin_month": 0.5,
-            "cos_month": 0.87
+            "month": 6
         }
     )
     assert response.status_code == 422
@@ -50,8 +46,6 @@ def test_predict_missing_api_key():
         "pm25_lag_2": 8.2,
         "pm25_lag_3": 9.0,
         "year": 2024,
-        "month": 6,
-        "sin_month": 0.5,
-        "cos_month": 0.87
+        "month": 6
     })
     assert response.status_code == 401

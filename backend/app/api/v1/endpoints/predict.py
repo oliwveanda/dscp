@@ -1,3 +1,5 @@
+import math
+
 from fastapi import APIRouter, Depends, HTTPException
 import numpy as np
 
@@ -18,9 +20,12 @@ def predict_pm25(data: PredictionInput, _: str = Depends(verify_api_key)):
     logger.debug(f"Request data: {data.model_dump()}")
 
     try:
+        sin_month = math.sin(2 * math.pi * data.month / 12)
+        cos_month = math.cos(2 * math.pi * data.month / 12)
+
         features = np.array([[ 
             data.pm25_lag_1, data.pm25_lag_2, data.pm25_lag_3,
-            data.year, data.month, data.sin_month, data.cos_month
+            data.year, data.month, sin_month, cos_month
         ]])
         prediction = model.predict(features)[0]
         logger.info(f"Prediction completed successfully. PM2.5 = {round(prediction, 2)}")
