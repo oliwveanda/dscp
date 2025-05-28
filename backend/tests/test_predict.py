@@ -48,4 +48,17 @@ def test_predict_missing_api_key():
         "year": 2024,
         "month": 6
     })
+    assert response.status_code == 422
+
+
+def test_predict_invalid_api_key():
+    response = client.post("/v1/predict/predict",
+        headers={"x-api-key": "secret"},
+        json={
+            "pm25_lag_1": 8.5,
+            "pm25_lag_2": 8.2,
+            "pm25_lag_3": 9.0,
+            "year": 2024,
+            "month": 6
+        })
     assert response.status_code == 401
