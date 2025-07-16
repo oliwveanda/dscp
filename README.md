@@ -6,9 +6,9 @@ Air pollution is one of the most significant environmental threats to urban popu
 
 This project was completed in a group during the Data Science Capstone Course.
 I was primarily responsible for:
--Performing exploratory data analysis (EDA)
--Creating visualizations and uncovering data patterns
--Identifying key trends and seasonal effects
+- Performing exploratory data analysis (EDA)
+- Creating visualizations and uncovering data patterns
+- Identifying key trends and seasonal effects
 I also actively contributed to the modeling pipeline, API development, and deployment efforts.
 
 ## Objectives
