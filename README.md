@@ -4,17 +4,12 @@
 
 Air pollution is one of the most significant environmental threats to urban populations. While everyone is exposed, pollutant emissions, levels of exposure, and population vulnerability vary significantly across neighborhoods. Exposure to common air pollutants has been linked to respiratory and cardiovascular diseases, cancers, and premature deaths. This project aims to analyze air quality data collected from New York City to better understand pollution trends, identify potential health risks, and predict...
 
-This project was completed as part of a group during the Data Science Capstone Course.
+This project was completed in a group during the Data Science Capstone Course.
 I was primarily responsible for:
-
-Performing exploratory data analysis (EDA)
-
-Creating visualizations and uncovering data patterns
-
-Identifying key trends and seasonal effects
+-Performing exploratory data analysis (EDA)
+-Creating visualizations and uncovering data patterns
+-Identifying key trends and seasonal effects
 I also actively contributed to the modeling pipeline, API development, and deployment efforts.
-
-🎯 Objectives
 
 ## Objectives
 
@@ -117,4 +112,5 @@ curl -X POST https://dscp-kskv.onrender.com/v1/predict/predict/geo \
 ## Acknowledgments
 
 This project utilizes data provided by New York City's air quality surveillance initiative, available on [Data.gov](https://catalog.data.gov/dataset/air-quality).
-Developed as a group project for the Data Science Capstone Course at IMC Krems.
+
+It was developed as a group project for the Data Science Capstone Course at IMC Krems.
